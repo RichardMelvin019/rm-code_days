@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App-header {
+  display: flex;
+  color: red;
+  border-bottom: 3px solid red;
+  padding: 10px;
+  background-color: white;
+}
+
+.App-logo {
+  height: 150px;
+  width: 150px;
+}
+
+.App-header h1 {
+  font-size: 1.5em;
+  font-family: sans-serif;
+  margin-top: 5rem;
+}
+
+.App-body {
+  padding: 10px;
+  border-bottom: 3px solid red;
+  height: 350px;
+  font-family: sans-serif;
+  margin-top: 30px;
+  padding-left: 40px;
+  background-color: white;
+  color: black;
+}
+
+.App-footer {
+  padding: 20px;
+  font-style: italic;
+  font-family: sans-serif;
+  background-color: white;
+  text-align: center;
+  color: black;
+}
