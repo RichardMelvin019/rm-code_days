@@ -1,6 +1,6 @@
-import logo from './holberton.jpg';
-import './App.css';
-import { getFullYear, getFooterCopy } from './utils';
+import logo from "./holberton.jpg";
+import "./App.css";
+import { getFullYear, getFooterCopy } from "./utils";
 
 function App() {
   return (
@@ -11,6 +11,26 @@ function App() {
       </header>
       <body className="App-body">
         <p>Login to access the full dashboard</p>
+        <form>
+
+          {/* Email */}
+          <div>
+            <label htmlFor="email">Email: </label>
+            <input type="email" id="email" />
+          </div>
+
+          {/* Password */}
+          <div>
+            <label htmlFor="password">Password: </label>
+            <input type="password" id="password" />
+          </div>
+
+          {/* Button */}
+          <div>
+            <button>OK</button>
+          </div>
+
+        </form>
       </body>
       <footer className="App-footer">
         <p>{`${getFooterCopy(true)} - ${getFullYear()}`}</p>
