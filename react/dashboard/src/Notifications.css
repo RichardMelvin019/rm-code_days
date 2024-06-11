@@ -12,3 +12,11 @@
   font-size: 14px;
   color: rgb(51, 50, 50);
 }
+
+ul li[data-priority="default"] {
+  color: blue;
+}
+
+ul li[data-priority="urgent"] {
+  color: red;
+}
