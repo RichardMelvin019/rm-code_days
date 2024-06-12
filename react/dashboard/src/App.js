@@ -1,6 +1,7 @@
 import logo from "./holberton.jpg";
 import "./App.css";
 import { getFullYear, getFooterCopy } from "./utils";
+import "./login.css";
 
 function App() {
   return (
@@ -10,18 +11,18 @@ function App() {
         <h1>School dashboard</h1>
       </header>
       <body className="App-body">
-        <p>Login to access the full dashboard</p>
+        <p><strong>Login to access the full dashboard</strong></p>
         <form>
 
           {/* Email */}
           <div>
-            <label htmlFor="email">Email: </label>
+            <label htmlFor="email">Email:</label>
             <input type="email" id="email" />
           </div>
 
           {/* Password */}
           <div>
-            <label htmlFor="password">Password: </label>
+            <label htmlFor="password">Password:</label>
             <input type="password" id="password" />
           </div>
 
