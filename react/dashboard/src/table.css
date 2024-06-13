@@ -1,8 +1,22 @@
-/* table {
-  margin: 20px;
-  padding: 20px;
-} */
+table {
+  width: 80%;
+  table-layout: auto;
+  border-spacing: 1px 1px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 70px;
+  font-family: 'Times New Roman', Times, serif;
+}
 
-table, th, td {
-  border: 1px solid;
+table,
+th,
+td {
+  border: 1px solid rgb(190, 187, 187);
+  border-collapse: collapse;
+  text-align: left;
+  height: 20px;
+}
+
+.mainHeader {
+  text-align: center;
 }

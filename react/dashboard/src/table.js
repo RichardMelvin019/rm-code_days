@@ -6,7 +6,7 @@ function Table() {
     <table>
       <thead>
         <tr>
-          <th colSpan={2}>Available courses</th>
+          <th colSpan={2} className="mainHeader">Available courses</th>
         </tr>
         <tr>
           <th>Course name</th>
