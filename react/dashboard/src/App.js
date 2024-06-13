@@ -4,8 +4,30 @@ import "./App.css";
 import { getFullYear, getFooterCopy } from "./utils";
 import "./login.css";
 import Table from "./table";
+import PropTypes from 'prop-types';
 
 class App extends Component {
+  static propTypes = {
+    logOut: PropTypes.func
+  };
+  static defaultProps = {
+    logOut: () => {}
+  };
+
+  handleKeydown = (event) => {
+    if (event.ctrlKey && event.key === 'h') {
+      alert('Logging you out');
+      this.props.logOut();
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeydown);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeydown);
+  }
+
   render() {
     return (
       <div className="App">
