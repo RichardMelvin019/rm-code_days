@@ -19,7 +19,7 @@ class Notifications extends Component {
               cursor: "pointer",
             }}
             aria-label="close"
-            onClick={console.log("Close button has been clicked")}
+            onClick={() => alert("Close button has been clicked")}
           >
             <img
               style={{

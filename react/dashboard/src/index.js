@@ -2,17 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Notifications from "./Notifications";
-// import Table from "./table";
+// import Notifications from "./Notifications";
+import ShowHide from "./show_hide";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <div className="root-notifications">
-      <Notifications />
+      {/* <Notifications /> */}
+      <ShowHide />
     </div>
     <App />
-    {/* <Table /> */}
   </React.StrictMode>
 );
 
