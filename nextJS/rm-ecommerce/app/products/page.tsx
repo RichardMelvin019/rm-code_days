@@ -30,7 +30,6 @@ interface Category {
 
 const Products = () => {
   const [products, setProducts] = useState<Product[] | []>([]);
-  const [categories, setCategories] = useState<Category[] | []>([]);
 
   // pagination info
   const [count, setCount] = useState<number>(0);
@@ -48,6 +47,9 @@ const Products = () => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<number>();
+  const [discount_price, setDiscount_price] = useState<number>();
+  const [categories, setCategories] = useState<Category[] | []>([]);
+  const [productImage, setProductImage] = useState<string>("");
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -98,22 +100,31 @@ const Products = () => {
     }
   };
 
-  const postproducts = async (event: FormEvent<HTMLFormElement>) => {
+  const postProduct = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     try {
-      const newForm = new FormData(event.currentTarget);
-      console.log("Posting data");
+      // const newForm = new FormData(event.currentTarget);
+      // console.log("Posting data");
 
       const newProduct = {
         name: name,
         description: description,
         price: price,
-        discount_price: newForm.get("discount_price"),
-        categories: newForm.get("categories"),
+        discount_price: discount_price,
+        categories: categories,
       };
 
       const response = await axios.post(`${baseUrl}products/`, newProduct);
 
-      console.log("Created data", response.data);
+      // pick product id
+      // make a post to productimage url - product id and product image url
+      const productImageInstance = {
+        product: response?.data?.id,
+        image_url: productImage,
+      };
+
+      await axios.post(`${baseUrl}productimages/`, productImageInstance);
 
       await getProducts();
     } catch (error: any) {
@@ -132,7 +143,7 @@ const Products = () => {
         <p className="font-bold text-lg underline underline-offset-4 text-blue-500">
           Products:
         </p>
-        <button onClick={toggleShowForm}>Add Product</button>
+        <button onClick={toggleShowForm} className="border p-1 rounded-xl bg-slate-500 hover:border-b-4">Add Product</button>
       </span>
       {products ? (
         <>
@@ -156,7 +167,7 @@ const Products = () => {
                 </h1>
                 <p>Product ID: {product.id}</p>
                 <img
-                  src={product.product_images[0]}
+                  src={product?.product_images[0] || ""}
                   alt={product.name}
                   className="rounded-lg"
                 />
@@ -212,7 +223,7 @@ const Products = () => {
       {showForm && (
         <div className="fixed inset-0 bg-black/50 flex flex-col items-center justify-center">
           <form
-            onSubmit={postproducts}
+            onSubmit={postProduct}
             className="flex flex-col justify-center bg-gray-500 rounded-lg space-y-2 p-4 m-4 w-fit"
           >
             <button type="button" onClick={toggleShowForm} className="ml-auto">
@@ -236,13 +247,35 @@ const Products = () => {
               className="flex flex-row items-center space-x-5"
             >
               <span>Description:</span>
-              <textarea
+              <input
+                type="text"
                 id="description"
                 value={description || ""}
                 onChange={(e) => setDescription(e.target.value)}
                 className="rounded-lg bg-gray-900"
               />
             </label>
+            <label
+              htmlFor="Product Image URL"
+              className="flex flex-row items-center space-x-5"
+            >
+              <span>Product Image URL:</span>
+              <input
+                type="url"
+                id="product_image_url"
+                value={productImage || ""}
+                onChange={(e) => setProductImage(e.target.value)}
+                className="rounded-lg bg-gray-900"
+              />
+            </label>
+            {/* Image preview */}
+            {productImage && (
+              <img
+                src={productImage}
+                alt="Product Preview"
+                className="w-32 h-32 object-cover"
+              />
+            )}
             <label
               htmlFor="Price"
               className="flex flex-row items-center space-x-5"
@@ -265,6 +298,8 @@ const Products = () => {
                 id="discount_price"
                 name="discount_price"
                 type="number"
+                value={discount_price || ""}
+                onChange={(e) => setDiscount_price(Number(e.target.value))}
                 className="rounded-lg bg-gray-900"
               />
             </label>
